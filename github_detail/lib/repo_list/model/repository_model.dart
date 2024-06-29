@@ -35,7 +35,7 @@ class RepositoryModel {
       required this.owner});
 
   factory RepositoryModel.fromJson(Map<String, dynamic> json) {
-    RepositoryModel? model = null;
+    RepositoryModel? model;
     try {
       model = RepositoryModel(
           name: json['name'],

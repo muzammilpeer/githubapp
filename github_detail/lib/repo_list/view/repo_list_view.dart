@@ -9,7 +9,7 @@ import '../../theme/view_model/theme_service.dart';
 import 'widgets/repository_list_widget.dart';
 
 class RepoListView extends StatelessWidget {
-  RepoListView({super.key});
+  const RepoListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,10 @@ class RepoListView extends StatelessWidget {
                       repositoryViewModel.fetchRepositories(user);
                     }),
               if (repositoryViewModel.isSecondaryLoading)
-                Expanded(
-                    child: const Center(child: CircularProgressIndicator()))
+                const Expanded(
+                    child: Center(child: CircularProgressIndicator()))
               else
-                Expanded(child: RepositoryListWidget()),
+                const Expanded(child: RepositoryListWidget()),
             ],
           ),
         ),

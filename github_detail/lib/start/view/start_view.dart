@@ -15,7 +15,7 @@ class StartView extends StatelessWidget {
           backgroundColor: theme.appBarBackgroundColor,
           foregroundColor: theme.appBarForegroundColor,
           elevation: 0,
-          title: Text("Github!"),
+          title: const Text("Github!"),
         ),
         body: Container(
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -23,7 +23,7 @@ class StartView extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, "/repoList");
               },
-              child: Text("Show Repositories")),
+              child: const Text("Show Repositories")),
         ])));
   }
 }
