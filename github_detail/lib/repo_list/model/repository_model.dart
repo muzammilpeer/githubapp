@@ -5,8 +5,7 @@ class Owner {
   Owner({required this.login, required this.avatarUrl});
 
   factory Owner.fromJson(Map<String, dynamic> json) {
-    Owner owner = Owner(login: json['login'], avatarUrl: json['avatar_url']);
-    return owner;
+    return Owner(login: json['login'], avatarUrl: json['avatar_url']);
   }
 }
 
@@ -35,25 +34,16 @@ class RepositoryModel {
       required this.owner});
 
   factory RepositoryModel.fromJson(Map<String, dynamic> json) {
-    RepositoryModel? model;
-    try {
-      model = RepositoryModel(
-          name: json['name'],
-          description: json['description'],
-          pushedAt: json['pushed_at'],
-          language: json['language'],
-          starsCount: json['stargazers_count'],
-          forksCount: json['forks_count'],
-          watchersCount: json['watchers_count'],
-          issuesCount: json['open_issues_count'],
-          visibility: json['visibility'],
-          owner: Owner.fromJson(json['owner']));
-      return model;
-    } catch (e) {
-      print("error exception RepositoryModel: $e");
-    }
-
-
-    return model!;
+    return RepositoryModel(
+        name: json['name'],
+        description: json['description'],
+        pushedAt: json['pushed_at'],
+        language: json['language'],
+        starsCount: json['stargazers_count'],
+        forksCount: json['forks_count'],
+        watchersCount: json['watchers_count'],
+        issuesCount: json['open_issues_count'],
+        visibility: json['visibility'],
+        owner: Owner.fromJson(json['owner']));
   }
 }
