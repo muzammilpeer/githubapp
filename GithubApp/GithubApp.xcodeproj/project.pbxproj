@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7FE167362C283C9300933281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE167352C283C9300933281 /* AppDelegate.swift */; };
-		7FE167382C283C9300933281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE167372C283C9300933281 /* SceneDelegate.swift */; };
 		7FE1673A2C283C9300933281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE167392C283C9300933281 /* ViewController.swift */; };
 		7FE1673D2C283C9300933281 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1673C2C283C9300933281 /* Base */; };
 		7FE1673F2C283C9300933281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FE1673E2C283C9300933281 /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 		785847E39B74D777F0661134 /* Pods-GithubApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubApp.debug.xcconfig"; path = "Target Support Files/Pods-GithubApp/Pods-GithubApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE167322C283C9300933281 /* GithubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FE167352C283C9300933281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7FE167372C283C9300933281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7FE167392C283C9300933281 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7FE1673C2C283C9300933281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FE1673E2C283C9300933281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				7FE167352C283C9300933281 /* AppDelegate.swift */,
-				7FE167372C283C9300933281 /* SceneDelegate.swift */,
 				7FE167392C283C9300933281 /* ViewController.swift */,
 				7FE1673B2C283C9300933281 /* Main.storyboard */,
 				7FE1673E2C283C9300933281 /* Assets.xcassets */,
@@ -80,7 +77,6 @@
 				785847E39B74D777F0661134 /* Pods-GithubApp.debug.xcconfig */,
 				33443A37317E458701CB4F9F /* Pods-GithubApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -100,9 +96,12 @@
 			buildConfigurationList = 7FE167462C283C9300933281 /* Build configuration list for PBXNativeTarget "GithubApp" */;
 			buildPhases = (
 				4B6F925361FD7F26B864164D /* [CP] Check Pods Manifest.lock */,
+				4F09C8E30C30895ABF9DC9AD /* [CP-User] Run Flutter Build github_detail Script */,
 				7FE1672E2C283C9300933281 /* Sources */,
 				7FE1672F2C283C9300933281 /* Frameworks */,
 				7FE167302C283C9300933281 /* Resources */,
+				7E35C5523361EFDCDE9DC888 /* [CP] Embed Pods Frameworks */,
+				CB15B6CF96B2179C2619972F /* [CP-User] Embed Flutter Build github_detail Script */,
 			);
 			buildRules = (
 			);
@@ -182,6 +181,43 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4F09C8E30C30895ABF9DC9AD /* [CP-User] Run Flutter Build github_detail Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Run Flutter Build github_detail Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../github_detail/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
+		};
+		7E35C5523361EFDCDE9DC888 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GithubApp/Pods-GithubApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GithubApp/Pods-GithubApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GithubApp/Pods-GithubApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB15B6CF96B2179C2619972F /* [CP-User] Embed Flutter Build github_detail Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Embed Flutter Build github_detail Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../github_detail/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh embed_and_thin";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -191,7 +227,6 @@
 			files = (
 				7FE1673A2C283C9300933281 /* ViewController.swift in Sources */,
 				7FE167362C283C9300933281 /* AppDelegate.swift in Sources */,
-				7FE167382C283C9300933281 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +379,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GithubApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -372,6 +409,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GithubApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

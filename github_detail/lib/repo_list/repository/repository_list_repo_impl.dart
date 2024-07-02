@@ -12,10 +12,27 @@ import 'package:http/http.dart' as http;
 class RepositoryListRepoImpl implements RepositoryListRepo {
   @override
   Future<List<UserModel>> fetchUsers(List<String> userNames) async {
-    await Future.delayed(const Duration(milliseconds: 1800));
-    final String response =
-        await rootBundle.loadString('assets/mock/users.json');
+    // await Future.delayed(const Duration(milliseconds: 1800));
+    // final String response =
+    //     await rootBundle.loadString('assets/mock/users.json');
+    // List<dynamic> decodedList = json.decode(response) as List;
+    // return decodedList.map((obj) => UserModel.fromJson(obj)).toList();
+    // try {
+    //   final String jsonString = await platform.invokeMethod('getData');
+    //   final List<dynamic> jsonData = jsonDecode(jsonString);
+    //   setState(() {
+    //     users = jsonData.map((data) => User.fromJson(data)).toList();
+    //   });
+    // } on PlatformException catch (e) {
+    //   print("Failed to receive data: '${e.message}'.");
+    // }
+
+    // await Future.delayed(const Duration(milliseconds: 1800));
+    const platform = MethodChannel('simple');
+    final String response = await platform.invokeMethod('listUsers');
     List<dynamic> decodedList = json.decode(response) as List;
+    print("decodedList: $decodedList");
+
     return decodedList.map((obj) => UserModel.fromJson(obj)).toList();
   }
 
@@ -33,14 +50,14 @@ class RepositoryListRepoImpl implements RepositoryListRepo {
         }).toList();
         return repositoriesList;
       } else {
-        throw Exception("API is not succesfull");
+        throw Exception("API is not successful");
       }
     } on SocketException {
-      throw Exception("No internet connection");
+      throw Exception("Socket Exception");
     } on HttpException {
-      throw Exception("Failed to load attachment images");
+      throw Exception("Http Exception");
     } on FormatException {
-      throw Exception("Invalid response format");
+      throw Exception("Format Exception");
     } catch (e) {
       throw Exception("unknown exception");
     }

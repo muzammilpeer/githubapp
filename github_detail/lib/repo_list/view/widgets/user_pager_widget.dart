@@ -11,7 +11,7 @@ class UserPagerWidget extends StatelessWidget {
   final List<UserModel> users;
   final PageController pageController;
 
-  UserPagerWidget({
+  const UserPagerWidget({
     super.key,
     required this.users,
     required this.pageController,
@@ -25,7 +25,7 @@ class UserPagerWidget extends StatelessWidget {
         Provider.of<RepositoryViewModel>(context);
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 100,
           child: PageView.builder(
@@ -40,13 +40,13 @@ class UserPagerWidget extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(users.length, (index) {
             return AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
               height: 8.0,
               width: repositoryNotifier.currentIndex == index ? 24.0 : 8.0,
               decoration: BoxDecoration(

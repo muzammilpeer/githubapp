@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:github_detail/repo_detail/view/widgets/banner_card_widget.dart';
 import 'package:github_detail/repo_detail/view/widgets/commit_card_widget.dart';
 import 'package:github_detail/theme/basic_theme.dart';
@@ -10,7 +9,7 @@ import '../../theme/view_model/theme_service.dart';
 import '../viewmodel/repository_detail_viewmodel.dart';
 
 class RepoDetailView extends StatelessWidget {
-  RepoDetailView({
+  const RepoDetailView({
     super.key,
   });
 
@@ -36,6 +35,11 @@ class RepoDetailView extends StatelessWidget {
               foregroundColor: theme.appBarForegroundColor,
               elevation: 0,
               title: Text("Repo: ${repositoryModel.name} !"),
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back)),
               actions: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
               ]),
@@ -53,19 +57,19 @@ class RepoDetailView extends StatelessWidget {
                       forksCount: repositoryModel.forksCount,
                       issuesCount: repositoryModel.issuesCount,
                       watchersCount: repositoryModel.watchersCount),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text("Description: ${repositoryModel.description ?? "No description"}",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
                           color: theme.subTitleTextColor)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text("Commits:",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 15,
                           color: theme.subTitleTextColor)),
-                  if (repositoryDetailViewModel.commitsModelList.length > 0)
+                  if (repositoryDetailViewModel.commitsModelList.isNotEmpty)
                     Expanded(
                       child: ListView.builder(
                         itemCount:

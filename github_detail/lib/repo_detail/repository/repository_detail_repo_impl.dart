@@ -27,14 +27,14 @@ class RepositoryDetailRepoImpl implements RepositoryDetailRepo {
         }).toList();
         return commitsList;
       } else {
-        throw Exception("API is not succesfull");
+        throw Exception("API is not successful");
       }
     } on SocketException {
-      throw Exception("No internet connection");
+      throw Exception("Socket Exception");
     } on HttpException {
-      throw Exception("Failed to load attachment images");
+      throw Exception("Http Exception");
     } on FormatException {
-      throw Exception("Invalid response format");
+      throw Exception("Format Exception");
     } catch (e) {
       throw Exception("unknown exception");
     }

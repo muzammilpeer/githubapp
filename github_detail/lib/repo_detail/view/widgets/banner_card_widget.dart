@@ -38,14 +38,14 @@ class BannerCardWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Image.asset(
             "assets/images/github-mark.png",
             width: 80,
             height: 80,
             color: theme.titleTextColor,
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,27 +57,27 @@ class BannerCardWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: theme.titleTextColor),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 children: [
-                  Icon(Icons.star, color: Colors.white),
+                  const Icon(Icons.star, color: Colors.white),
                   Text(
                     starsCount.toString(),
                     style: TextStyle(fontSize: 15, color: theme.titleTextColor),
                   ),
-                  SizedBox(width: 10),
-                  Icon(Icons.call_split, color: Colors.white),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.call_split, color: Colors.white),
                   Text(
                     forksCount.toString(),
                     style: TextStyle(fontSize: 15, color: theme.titleTextColor),
                   ),
-                  SizedBox(width: 10),
-                  Icon(Icons.error, color: Colors.white),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.error, color: Colors.white),
                   Text(
                     issuesCount.toString(),
                     style: TextStyle(fontSize: 15, color: theme.titleTextColor),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Icon(Icons.remove_red_eye, color: theme.titleTextColor),
                   Text(
                     watchersCount.toString(),

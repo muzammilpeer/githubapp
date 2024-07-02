@@ -115,10 +115,9 @@ class CommitCardWidget extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     Clipboard.setData(
-                            new ClipboardData(text: commitModel.commitHash))
+                            ClipboardData(text: commitModel.commitHash))
                         .then((_) {
-                      // controller.clear();
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Copied to your clipboard !')));
                     });
                   },
@@ -128,7 +127,7 @@ class CommitCardWidget extends StatelessWidget {
                   )),
               IconButton(
                   onPressed: () async {
-                    if (await launchUrl(Uri(path: commitModel.commitUrl),
+                    if (await launchUrl(Uri.parse(commitModel.commitUrl),
                         mode: LaunchMode.inAppBrowserView)) {
                       throw Exception('Could not launch ');
                     }
