@@ -28,8 +28,8 @@ class RepositoryListRepoImpl implements RepositoryListRepo {
     // }
 
     // await Future.delayed(const Duration(milliseconds: 1800));
-    const platform = MethodChannel('uk.muzammilpeer.github_deatil/data');
-    final String response = await platform.invokeMethod('getData');
+    const platform = MethodChannel('simple');
+    final String response = await platform.invokeMethod('listUsers');
     List<dynamic> decodedList = json.decode(response) as List;
     print("decodedList: $decodedList");
 
