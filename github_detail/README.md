@@ -23,11 +23,11 @@ dart pub add url_launcher
 # Generate build runner related files
 flutter pub run build_runner build
 
-# run test and add coverage 
+# run test and add coverage
 flutter test --coverage test
 
 Xcode:
-Build Settings-> Build option: User Script Sandboxing = No
+Build Settings-> Build option -> User Script Sandboxing = No
 
 # Compile framework for iOS
 flutter build ios-framework
