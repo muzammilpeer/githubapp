@@ -35,6 +35,11 @@ class RepoDetailView extends StatelessWidget {
               foregroundColor: theme.appBarForegroundColor,
               elevation: 0,
               title: Text("Repo: ${repositoryModel.name} !"),
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back)),
               actions: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
               ]),

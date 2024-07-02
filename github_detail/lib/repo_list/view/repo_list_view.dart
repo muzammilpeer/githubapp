@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:github_detail/repo_list/view_model/repository_viewmodel.dart';
 import 'package:github_detail/repo_list/model/user_model.dart';
 import 'package:github_detail/repo_list/view/widgets/user_pager_widget.dart';
@@ -17,12 +18,16 @@ class RepoListView extends StatelessWidget {
     // if (users == null || users!.isEmpty) {
     //   users = ModalRoute.of(context)!.settings.arguments as List<UserModel>;
     // }
+    String responseReceived = "No data received yet!";
     BasicTheme theme =
         Provider.of<ThemeService>(context, listen: false).currentTheme;
     RepositoryViewModel repositoryViewModel =
         Provider.of<RepositoryViewModel>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      repositoryViewModel.fetchUserProfiles([]);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      const platform = MethodChannel('uk.muzammilpeer.github_deatil/data');
+      responseReceived = await platform.invokeMethod('getData');
+
+      // repositoryViewModel.fetchUserProfiles([]);
     });
 
     return Consumer<RepositoryViewModel>(builder:
@@ -33,6 +38,11 @@ class RepoListView extends StatelessWidget {
           backgroundColor: theme.appBarBackgroundColor,
           foregroundColor: theme.appBarForegroundColor,
           elevation: 0,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back)),
           title: const Text("Repositories !"),
         ),
         body: Container(
@@ -40,6 +50,7 @@ class RepoListView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(responseReceived),
               if (repositoryViewModel.isLoading)
                 const Center(child: CircularProgressIndicator())
               else

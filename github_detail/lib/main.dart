@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeService>(builder: (context, themeNotifier, child) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: themeNotifier.currentTheme.primaryColor,
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             foregroundColor: themeNotifier.currentTheme.appBarForegroundColor,
           ),
         ),
-        home: const StartView(),
+        home: const RepoListView(),
         routes: {
           "/repoList": (BuildContext context) => const RepoListView(),
           "/repoDetail": (BuildContext context) => const RepoDetailView(),

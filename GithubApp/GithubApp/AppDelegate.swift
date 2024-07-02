@@ -6,31 +6,86 @@
 //
 
 import UIKit
+import Flutter
+import FlutterPluginRegistrant
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+//UIResponder, UIApplicationDelegate,
+class AppDelegate: FlutterAppDelegate {
+
+    lazy var flutterEngine = FlutterEngine(name: "my flutter engine")
 
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+//        // Run the Flutter engine
+//        flutterEngine.run()
+//        
+//        GeneratedPluginRegistrant.register(with: self.flutterEngine)
+        
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    func bootFlutter() {
+        // Run the Flutter engine
+        flutterEngine.run()
+        
+        GeneratedPluginRegistrant.register(with: self.flutterEngine)
     }
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        // Override point for customization after application launch.
+//        return true
+//    }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    private func sendDataToFlutter(controller:FlutterViewController){
+        let channel = FlutterMethodChannel(name: "uk.muzammilpeer.github_deatil/data",
+                                           binaryMessenger: controller.binaryMessenger)
+        
+        channel.setMethodCallHandler { [weak self] (call, result) in
+            if call.method == "getData" {
+                print("i am called")
+                self?.sendData(result: result)
+            } else {
+                result(FlutterMethodNotImplemented)
+            }
+        }
     }
-
+    
+    private func sendData(result: FlutterResult) {
+        let data: [[String: String]] = [
+            [
+                "userName": "muzammilpeer",
+                "name": "Muzammil Peer",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/859865?v=4",
+                "email": ""
+            ],
+            [
+                "userName": "taharafiq",
+                "name": "Taha Rafiq",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/338262?v=4",
+                "email": ""
+            ],
+            [
+                "userName": "abmussani",
+                "name": "Abdul Basit",
+                "avatarUrl": "https://avatars.githubusercontent.com/u/5653562?v=4",
+                "email": ""
+            ]
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                result(jsonString)
+            } else {
+                result(FlutterError(code: "JSON_ERROR", message: "Unable to encode JSON string", details: nil))
+            }
+        } catch {
+            result(FlutterError(code: "JSON_ERROR", message: "Unable to serialize JSON", details: nil))
+        }
+    }
 
 }
 
